@@ -2,7 +2,7 @@
   "name": "js-time",
   "version": "1.0.0",
   "description": "时间转换",
-  "main": "index.js",
+  "main": "src/dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,9 +18,11 @@
   "homepage": "https://github.com/rywaroy/js-time#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "dayjs": "^1.7.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
+    "moment": "^2.22.2",
     "parcel-bundler": "^1.9.7"
   }
 }
