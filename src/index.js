@@ -98,6 +98,10 @@ class Time {
     return this.$ms;
   }
 
+  unix() {
+    return Math.floor(this.valueOf() / 1000);
+  }
+
   valueOf() {
     return this.$d.getTime();
   }
@@ -144,6 +148,23 @@ class Time {
       }
     });
   }
+
+  toDate() {
+    return new Date(this.$d);
+  }
+
+  toObject() {
+    return {
+      years: this.$y,
+      months: this.$M,
+      date: this.$D,
+      hours: this.$H,
+      minutes: this.$m,
+      seconds: this.$s,
+      milliseconds: this.$ms,
+    };
+  }
 }
 
-export default time;
+// export default time;
+module.exports = time;
