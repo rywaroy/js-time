@@ -1,0 +1,109 @@
+const expect = require('chai').expect;
+const moment = require('moment');
+const time = require('../src/index');
+
+describe('time', function () {
+	it('测试 year', function () {
+		expect(time('2018-10-10').year()).to.be.equal(2018);
+		expect(time(1532329201000).year()).to.be.equal(2018);
+		expect(time().year()).to.be.equal(new Date().getFullYear());
+	});
+
+	it('测试 month', function () {
+		expect(time('2018-10-10').month()).to.be.equal(9);
+		expect(time(1532329201000).month()).to.be.equal(6);
+		expect(time().month()).to.be.equal(new Date().getMonth());
+	});
+
+	it('测试 day', function () {
+		expect(time('2018-10-10').day()).to.be.equal(3);
+		expect(time(1532329201000).day()).to.be.equal(1);
+		expect(time().day()).to.be.equal(new Date().getDay());
+	});
+
+	it('测试 date', function () {
+		expect(time('2018-10-10').date()).to.be.equal(10);
+		expect(time(1532329201000).date()).to.be.equal(23);
+		expect(time().date()).to.be.equal(new Date().getDate());
+	});
+
+	it('测试 hour', function () {
+		expect(time('2018-10-10 14:23:23').hour()).to.be.equal(14);
+		expect(time(1532329201000).hour()).to.be.equal(15);
+		expect(time().hour()).to.be.equal(new Date().getHours());
+	});
+
+	it('测试 minute', function () {
+		expect(time('2018-10-10 14:23:23').minute()).to.be.equal(23);
+		expect(time(1532329201000).minute()).to.be.equal(0);
+		expect(time().minute()).to.be.equal(new Date().getMinutes());
+	});
+
+	it('测试 second', function () {
+		expect(time('2018-10-10 14:23:23:222').second()).to.be.equal(23);
+		expect(time(1532329201000).second()).to.be.equal(1);
+		expect(time().second()).to.be.equal(new Date().getSeconds());
+	});
+
+	it('测试 millisecond', function () {
+		expect(time('2018-10-10 14:23:23:222').millisecond()).to.be.equal(222);
+		expect(time(1532329201000).millisecond()).to.be.equal(0);
+		// expect(time().millisecond()).to.be.equal(new Date().getMilliseconds());
+	});
+
+	it('测试 unix', function () {
+		expect(time('2018-10-10 14:23:23').unix()).to.be.equal(1539152603);
+		expect(time(1532329201000).unix()).to.be.equal(1532329201);
+		expect(time().unix()).to.be.equal(moment().unix());
+	});
+
+	it('测试 valueOf', function () {
+		expect(time('2018-10-10 14:23:23').valueOf()).to.be.equal(1539152603000);
+		expect(time(1532329201000).valueOf()).to.be.equal(1532329201000);
+		expect(time().valueOf()).to.be.equal(new Date().getTime());
+	});
+
+	it('测试 isSame', function () {
+		expect(time('2018-1-1').isSame('2018-1-1')).to.be.equal(true);
+		expect(time('2018-1-12').isSame('2018-1-1')).to.be.equal(false);
+	});
+
+	it('测试 isBefore', function () {
+		expect(time('2018-1-1').isBefore('2018-1-10')).to.be.equal(true);
+		expect(time('2018-1-1').isBefore('2017-1-10')).to.be.equal(false);
+	});
+
+	it('测试 isAfter', function () {
+		expect(time('2018-1-10').isAfter('2018-1-5')).to.be.equal(true);
+		expect(time('2018-1-1').isAfter('2018-1-10')).to.be.equal(false);
+	});
+
+	it('测试 format', function () {
+		expect(time().format('YY')).to.be.equal(moment().format('YY'));
+		expect(time().format('YYYY')).to.be.equal(moment().format('YYYY'));
+		expect(time().format('YYYY-M')).to.be.equal(moment().format('YYYY-M'));
+		expect(time().format('YYYY-MM')).to.be.equal(moment().format('YYYY-MM'));
+		expect(time().format('YYYY-MM-D')).to.be.equal(moment().format('YYYY-MM-D'));
+		expect(time().format('YYYY-MM-DD')).to.be.equal(moment().format('YYYY-MM-DD'));
+		expect(time().format('YYYY-MM-DD H')).to.be.equal(moment().format('YYYY-MM-DD H'));
+		expect(time().format('YYYY-MM-DD HH')).to.be.equal(moment().format('YYYY-MM-DD HH'));
+		expect(time().format('YYYY-MM-DD h')).to.be.equal(moment().format('YYYY-MM-DD h'));
+		expect(time().format('YYYY-MM-DD hh')).to.be.equal(moment().format('YYYY-MM-DD hh'));
+		expect(time().format('YYYY-MM-DD HH a')).to.be.equal(moment().format('YYYY-MM-DD HH a'));
+		expect(time().format('YYYY-MM-DD HH A')).to.be.equal(moment().format('YYYY-MM-DD HH A'));
+		expect(time().format('YYYY-MM-DD HH')).to.be.equal(moment().format('YYYY-MM-DD HH'));
+		expect(time().format('YYYY-MM-DD HH:m')).to.be.equal(moment().format('YYYY-MM-DD HH:m'));
+		expect(time().format('YYYY-MM-DD HH:mm')).to.be.equal(moment().format('YYYY-MM-DD HH:mm'));
+		expect(time().format('YYYY-MM-DD HH:mm:s')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:s'));
+		expect(time().format('YYYY-MM-DD HH:mm:ss')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:ss'));
+		// expect(time().format('YYYY-MM-DD HH:mm:ss:SSS')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:ss:SSS'));
+	});
+
+	// it('测试 toDate', function () {
+	// 	expect(time('2018-1-10').toDate().toISOString()).to.be.equal(moment('2018-1-10').toDate().toISOString());
+	// });
+
+	it('测试 toObject', function () {
+		expect(JSON.stringify(time('2018-1-10 14:12:45').toObject())).to.be.equal('{"years":2018,"months":0,"date":10,"hours":14,"minutes":12,"seconds":45,"milliseconds":0}');
+	});
+});
