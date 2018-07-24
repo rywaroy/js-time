@@ -164,6 +164,27 @@ class Time {
       milliseconds: this.$ms,
     };
   }
+
+  ago(that) {
+    const sec = parseInt(this.$compare(that) / 1000, 10);
+    if (sec < 0) {
+      return null;
+    } else if (sec < 10) {
+      return '刚刚';
+    } else if (sec < 60) {
+      return `${sec}秒前`;
+    } else if (sec < 3600) {
+      return `${parseInt(sec / 60, 10)}分钟前`;
+    } else if (sec < 86400) {
+      return `${parseInt(sec / 3600, 10)}小时前`;
+    } else if (sec < 2592000) {
+      return `${parseInt(sec / 86400, 10)}天前`;
+    } else if (sec < 31536000) {
+      return `${parseInt(sec / 2592000, 10)}个月前`;
+    } else {
+      return `${parseInt(sec / 31536000, 10)}年前`;
+    }
+  }
 }
 
 // export default time;
