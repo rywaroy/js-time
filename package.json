@@ -1,6 +1,6 @@
 {
-  "name": "js-time",
-  "version": "1.0.0",
+  "name": "js-time.js",
+  "version": "1.0.2",
   "description": "时间转换",
   "main": "src/dist/index.js",
   "scripts": {
