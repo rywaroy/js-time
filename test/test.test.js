@@ -99,11 +99,17 @@ describe('time', function () {
 		// expect(time().format('YYYY-MM-DD HH:mm:ss:SSS')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:ss:SSS'));
 	});
 
-	// it('测试 toDate', function () {
-	// 	expect(time('2018-1-10').toDate().toISOString()).to.be.equal(moment('2018-1-10').toDate().toISOString());
-	// });
-
 	it('测试 toObject', function () {
 		expect(JSON.stringify(time('2018-1-10 14:12:45').toObject())).to.be.equal('{"years":2018,"months":0,"date":10,"hours":14,"minutes":12,"seconds":45,"milliseconds":0}');
+	});
+
+	it('测试 ago', function () {
+		expect(JSON.stringify(time('2018-1-10 1:0:0').ago('2018-1-10 1:0:0'))).to.be.equal('"刚刚"');
+		expect(JSON.stringify(time('2018-1-10 1:0:0').ago('2018-1-10 0:59:40'))).to.be.equal('"20秒前"');
+		expect(JSON.stringify(time('2018-1-10 1:0:0').ago('2018-1-10 0:57:59'))).to.be.equal('"2分钟前"');
+		expect(JSON.stringify(time('2018-1-10 5:0:0').ago('2018-1-10 3:57:59'))).to.be.equal('"1小时前"');
+		expect(JSON.stringify(time('2018-1-10 5:0:0').ago('2018-1-9 3:57:59'))).to.be.equal('"1天前"');
+		expect(JSON.stringify(time('2018-3-10 5:0:0').ago('2018-1-11 3:57:59'))).to.be.equal('"1个月前"');
+		expect(JSON.stringify(time('2018-3-10 5:0:0').ago('2017-1-11 3:57:59'))).to.be.equal('"1年前"');
 	});
 });
