@@ -198,5 +198,5 @@ class Time {
   }
 }
 
-// export default time;
-module.exports = time;
+export default time;
+// module.exports = time;
