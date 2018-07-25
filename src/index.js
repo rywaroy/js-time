@@ -29,8 +29,19 @@ class Time {
       return date;
     }
     if (typeof date === 'string') {
-      date.replace(/-/g, '/');
-      return new Date(date);
+      let newDate = date;
+      const ua = navigator.userAgent.toLocaleLowerCase();
+      if (ua.match(/msie/) !== null || ua.match(/trident/) !== null) { // ie
+        newDate = date.replace(/-/g, '/');
+        let millisecond = 0;
+        newDate = newDate.replace(/\.(\d+)/, (str, s) => {
+          millisecond = s;
+          return '';
+        });
+        return new Date(Date.parse(newDate) + parseInt(millisecond, 10));
+      } else {
+        return new Date(newDate);
+      }
     }
     return new Date(date);
   }
