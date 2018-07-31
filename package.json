@@ -1,6 +1,6 @@
 {
   "name": "js-time.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "时间转换",
   "main": "js-time.min.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "@babel/preset-env": "^7.0.0-beta.54",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
@@ -35,7 +36,7 @@
     "moment": "^2.22.2",
     "parcel-bundler": "^1.9.7",
     "rollup": "^0.63.4",
-    "rollup-plugin-babel": "^4.0.0-beta.4",
+    "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-uglify": "^3.0.0"
   }
 }
