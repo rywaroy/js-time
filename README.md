@@ -175,4 +175,4 @@ time().format('YYYY-MM-DD HH:mm:ss'); // 2018-08-15 15:44:33
 
 ## License
 
-[MIT]()
+[MIT](https://github.com/rywaroy/js-time/blob/master/LICENSE)
