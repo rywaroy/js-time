@@ -1,12 +1,14 @@
 {
   "name": "js-time.js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "时间转换",
   "main": "js-time.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -29,10 +31,13 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
     "dayjs": "^1.7.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "parcel-bundler": "^1.9.7",
     "rollup": "^0.63.4",

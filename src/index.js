@@ -30,7 +30,7 @@ class Time {
     }
     if (typeof date === 'string') {
       let newDate = date;
-      const ua = navigator.userAgent.toLocaleLowerCase();
+      const ua = typeof navigator === 'undefined' ? '' : navigator.userAgent.toLocaleLowerCase();
       if (ua.match(/msie/) !== null || ua.match(/trident/) !== null) { // ie
         newDate = date.replace(/-/g, '/');
         let millisecond = 0;
@@ -198,5 +198,5 @@ class Time {
   }
 }
 
-export default time;
-// module.exports = time;
+// export default time;
+module.exports = time;

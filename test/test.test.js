@@ -3,52 +3,65 @@ const moment = require('moment');
 const time = require('../src/index');
 
 describe('time', function () {
+	
 	it('测试 year', function () {
+		expect(time(new Date(2018,10,10)).year()).to.be.equal(2018);
 		expect(time('2018-10-10').year()).to.be.equal(2018);
 		expect(time(1532329201000).year()).to.be.equal(2018);
 		expect(time().year()).to.be.equal(new Date().getFullYear());
+		expect(isNaN(time(null).year())).to.be.equal(true);
 	});
 
 	it('测试 month', function () {
+		expect(time(new Date(2018,10,10)).month()).to.be.equal(10);
 		expect(time('2018-10-10').month()).to.be.equal(9);
 		expect(time(1532329201000).month()).to.be.equal(6);
 		expect(time().month()).to.be.equal(new Date().getMonth());
+		expect(isNaN(time(null).month())).to.be.equal(true);
 	});
 
 	it('测试 day', function () {
+		expect(time(new Date(2018,10,10)).day()).to.be.equal(6);
 		expect(time('2018-10-10').day()).to.be.equal(3);
 		expect(time(1532329201000).day()).to.be.equal(1);
 		expect(time().day()).to.be.equal(new Date().getDay());
+		expect(isNaN(time(null).day())).to.be.equal(true);
 	});
 
 	it('测试 date', function () {
+		expect(time(new Date(2018,10,10)).date()).to.be.equal(10);
 		expect(time('2018-10-10').date()).to.be.equal(10);
 		expect(time(1532329201000).date()).to.be.equal(23);
 		expect(time().date()).to.be.equal(new Date().getDate());
+		expect(isNaN(time(null).date())).to.be.equal(true);
 	});
 
 	it('测试 hour', function () {
 		expect(time('2018-10-10 14:23:23').hour()).to.be.equal(14);
 		expect(time(1532329201000).hour()).to.be.equal(15);
 		expect(time().hour()).to.be.equal(new Date().getHours());
+		expect(isNaN(time(null).hour())).to.be.equal(true);
 	});
 
 	it('测试 minute', function () {
 		expect(time('2018-10-10 14:23:23').minute()).to.be.equal(23);
 		expect(time(1532329201000).minute()).to.be.equal(0);
 		expect(time().minute()).to.be.equal(new Date().getMinutes());
+		expect(isNaN(time(null).minute())).to.be.equal(true);
 	});
 
 	it('测试 second', function () {
 		expect(time('2018-10-10 14:23:23:222').second()).to.be.equal(23);
 		expect(time(1532329201000).second()).to.be.equal(1);
 		expect(time().second()).to.be.equal(new Date().getSeconds());
+		expect(isNaN(time(null).second())).to.be.equal(true);
 	});
 
 	it('测试 millisecond', function () {
 		expect(time('2018-10-10 14:23:23:222').millisecond()).to.be.equal(222);
 		expect(time(1532329201000).millisecond()).to.be.equal(0);
-		// expect(time().millisecond()).to.be.equal(new Date().getMilliseconds());
+		expect(time().millisecond()).to.be.equal(new Date().getMilliseconds());
+		expect(isNaN(time(null).millisecond())).to.be.equal(true);
 	});
 
 	it('测试 unix', function () {
