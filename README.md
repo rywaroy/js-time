@@ -2,6 +2,8 @@
 
 > 缩减 [day.js](https://github.com/iamkun/dayjs), 增加 `ie`兼容，增加相距时间。
 
+[![Coverage Status](https://coveralls.io/repos/github/rywaroy/js-time/badge.svg?branch=master)](https://coveralls.io/github/rywaroy/js-time?branch=master)
+
 ## 安装
 
 ```
