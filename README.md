@@ -175,6 +175,12 @@ time().format('YYYY-MM-DD HH:mm:ss'); // 2018-08-15 15:44:33
   time().toObject(); // ["years":2018,"months":7,"date":15,"hours":17,"minutes":23,"seconds":28,"milliseconds":623]
   ```
 
+* dayNum
+
+  ```js
+  time('2018-8-20').dayNum('2018-8-19') // 1 (几天之前)
+  ```
+
 ## License
 
 [MIT](https://github.com/rywaroy/js-time/blob/master/LICENSE)

@@ -196,6 +196,11 @@ class Time {
       return `${parseInt(sec / 31536000, 10)}年前`;
     }
   }
+
+  dayNum(that) {
+    const sec = parseInt(this.$compare(that) / 1000, 10);
+    return parseInt(sec / 86400, 10);
+  }
 }
 
 // export default time;

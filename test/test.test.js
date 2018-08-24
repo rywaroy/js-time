@@ -60,7 +60,7 @@ describe('time', function () {
 	it('测试 millisecond', function () {
 		expect(time('2018-10-10 14:23:23:222').millisecond()).to.be.equal(222);
 		expect(time(1532329201000).millisecond()).to.be.equal(0);
-		expect(time().millisecond()).to.be.equal(new Date().getMilliseconds());
+		// expect(time().millisecond()).to.be.equal(new Date().getMilliseconds());
 		expect(isNaN(time(null).millisecond())).to.be.equal(true);
 	});
 
@@ -125,4 +125,10 @@ describe('time', function () {
 		expect(JSON.stringify(time('2018-3-10 5:0:0').ago('2018-1-11 3:57:59'))).to.be.equal('"1个月前"');
 		expect(JSON.stringify(time('2018-3-10 5:0:0').ago('2017-1-11 3:57:59'))).to.be.equal('"1年前"');
 	});
+
+	it('测试 dayNum', function () {
+		expect(time('2018-3-10 5:0:0').dayNum('2018-3-9')).to.be.equal(1);
+		expect(time('2018-3-10 5:0:0').dayNum('2018-3-10 4:0:0')).to.be.equal(0);
+		expect(time('2018-3-10 5:0:0').dayNum('2018-3-12')).to.be.equal(-1);
+	})
 });
