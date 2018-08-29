@@ -181,6 +181,16 @@ time().format('YYYY-MM-DD HH:mm:ss'); // 2018-08-15 15:44:33
   time('2018-8-20').dayNum('2018-8-19') // 1 (几天之前)
   ```
 
+* monthDays
+
+  ```js
+  // 获取当月天数 无月份默认1月
+
+  time('2018-8-20').monthDays() // 31 
+  time('2018-2').monthDays() // 29
+  time('2018').monthDays() // 31
+  ```
+
 ## License
 
 [MIT](https://github.com/rywaroy/js-time/blob/master/LICENSE)
