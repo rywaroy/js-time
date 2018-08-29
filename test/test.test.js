@@ -131,4 +131,10 @@ describe('time', function () {
 		expect(time('2018-3-10 5:0:0').dayNum('2018-3-10 4:0:0')).to.be.equal(0);
 		expect(time('2018-3-10 5:0:0').dayNum('2018-3-12')).to.be.equal(-1);
 	})
+
+	it('测试 monthDays', function () {
+		expect(time('2018-8').monthDays()).to.be.equal(31);
+		expect(time('2018').monthDays()).to.be.equal(31);
+		expect(time('2018-2').monthDays()).to.be.equal(28);
+	})
 });
