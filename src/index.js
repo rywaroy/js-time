@@ -201,6 +201,11 @@ class Time {
     const sec = parseInt(this.$compare(that) / 1000, 10);
     return parseInt(sec / 86400, 10);
   }
+
+  monthDays() {
+    const lastDay = new Date(this.$y, this.$M + 1, 0);
+    return lastDay.getDate();
+  }
 }
 
 // export default time;
