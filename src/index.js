@@ -31,7 +31,7 @@ class Time {
     if (typeof date === 'string') {
       let newDate = date;
       const ua = typeof navigator === 'undefined' ? '' : navigator.userAgent.toLocaleLowerCase();
-      if (ua.match(/msie/) !== null || ua.match(/trident/) !== null || (ua.indexOf('safari') > -1 && ua.indexOf('chrome') === -1)) { // ie safari
+      if (ua.match(/msie/) !== null || ua.match(/trident/) !== null || (ua.indexOf('safari') > -1 && ua.indexOf('chrome') === -1) || ua.indexOf('ipad') > -1) { // ie safari ipad
         newDate = date.replace(/-/g, '/').replace(/T/, ' ');
         let millisecond = 0;
         newDate = newDate.replace(/\.(\d+)/, (str, s) => {
