@@ -30,18 +30,13 @@ class Time {
     }
     if (typeof date === 'string') {
       let newDate = date;
-      const ua = typeof navigator === 'undefined' ? '' : navigator.userAgent.toLocaleLowerCase();
-      if (ua.match(/msie/) !== null || ua.match(/trident/) !== null || (ua.indexOf('safari') > -1 && ua.indexOf('chrome') === -1) || ua.indexOf('ipad') > -1) { // ie safari ipad
-        newDate = date.replace(/-/g, '/').replace(/T/, ' ');
-        let millisecond = 0;
-        newDate = newDate.replace(/\.(\d+)/, (str, s) => {
-          millisecond = s;
-          return '';
-        });
-        return new Date(Date.parse(newDate) + parseInt(millisecond, 10));
-      } else {
-        return new Date(newDate);
-      }
+      newDate = date.replace(/-/g, '/').replace(/T/, ' ');
+      let millisecond = 0;
+      newDate = newDate.replace(/\.(\d+)/, (str, s) => {
+        millisecond = s;
+        return '';
+      });
+      return new Date(Date.parse(newDate) + parseInt(millisecond, 10));
     }
     return new Date(date);
   }
@@ -154,8 +149,6 @@ class Time {
           return padStart(this.$s, 2, '0');
         case 'SSS':
           return padStart(this.$ms, 3, '0');
-        default:
-          return null;
       }
     });
   }

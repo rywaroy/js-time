@@ -3,6 +3,7 @@
 > 缩减 [day.js](https://github.com/iamkun/dayjs), 增加 `ie`兼容，增加相距时间。
 
 [![codecov](https://codecov.io/gh/rywaroy/js-time/branch/master/graph/badge.svg)](https://codecov.io/gh/rywaroy/js-time)
+[![Build Status](https://travis-ci.org/bugsnag/bugsnag-js.svg?branch=master)](https://travis-ci.org/bugsnag/bugsnag-js)
 
 ## 安装
 
