@@ -3,6 +3,11 @@ const moment = require('moment');
 const time = require('../src/index');
 
 describe('time', function () {
+
+	it('isValid', function () {
+		expect(time('2018-1-1').isValid()).to.be.equal(true);
+		expect(time('2018-10-18T13:47:30.449+0000').isValid()).to.be.equal(true);
+	});
 	
 	it('测试 year', function () {
 		expect(time(new Date(2018,10,10)).year()).to.be.equal(2018);
@@ -109,7 +114,11 @@ describe('time', function () {
 		expect(time().format('YYYY-MM-DD HH:mm')).to.be.equal(moment().format('YYYY-MM-DD HH:mm'));
 		expect(time().format('YYYY-MM-DD HH:mm:s')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:s'));
 		expect(time().format('YYYY-MM-DD HH:mm:ss')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:ss'));
-		// expect(time().format('YYYY-MM-DD HH:mm:ss:SSS')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:ss:SSS'));
+		expect(time().format('YYYY-MM-DD HH:mm:ss:SSS')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:ss:SSS'));
+		expect(time('2018-1-1 0:0').format('hh')).to.be.equal('12');
+		expect(time('2018-1-1 18:0').format('hh')).to.be.equal('06');
+		expect(time('2018-1-1 18:0').format('a')).to.be.equal('pm');
+		expect(time('2018-1-1 18:0').format('A')).to.be.equal('PM');
 	});
 
 	it('测试 toObject', function () {
@@ -117,6 +126,7 @@ describe('time', function () {
 	});
 
 	it('测试 ago', function () {
+		expect(JSON.stringify(time('2018-1-10 1:0:0').ago('2018-1-10 2:0:0'))).to.be.equal('null');
 		expect(JSON.stringify(time('2018-1-10 1:0:0').ago('2018-1-10 1:0:0'))).to.be.equal('"刚刚"');
 		expect(JSON.stringify(time('2018-1-10 1:0:0').ago('2018-1-10 0:59:40'))).to.be.equal('"20秒前"');
 		expect(JSON.stringify(time('2018-1-10 1:0:0').ago('2018-1-10 0:57:59'))).to.be.equal('"2分钟前"');
@@ -137,4 +147,8 @@ describe('time', function () {
 		expect(time('2018').monthDays()).to.be.equal(31);
 		expect(time('2018-2').monthDays()).to.be.equal(28);
 	})
+
+	it('测试 toDate', function () {
+		expect((time().toDate().valueOf() / 1000).toFixed(0)).to.be.equal((new Date().valueOf() / 1000).toFixed(0));
+	});
 });
