@@ -119,6 +119,8 @@ describe('time', function () {
 		expect(time('2018-1-1 18:0').format('hh')).to.be.equal('06');
 		expect(time('2018-1-1 18:0').format('a')).to.be.equal('pm');
 		expect(time('2018-1-1 18:0').format('A')).to.be.equal('PM');
+		expect(time('2018-1-1 6:0').format('a')).to.be.equal('am');
+		expect(time('2018-1-1 6:0').format('A')).to.be.equal('AM');
 	});
 
 	it('测试 toObject', function () {
