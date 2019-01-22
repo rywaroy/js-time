@@ -3,5 +3,6 @@ module.exports = {
     rules: {
         'no-else-return': 0,
         'default-case': 0,
+        'prefer-destructuring': 0,
     }
 };
