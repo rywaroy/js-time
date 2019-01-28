@@ -1,6 +1,6 @@
 {
   "name": "js-time.js",
-  "version": "1.3.9",
+  "version": "1.3.11",
   "description": "时间转换",
   "main": "js-time.min.js",
   "scripts": {

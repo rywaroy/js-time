@@ -39,7 +39,7 @@ class Time {
       if (newDate.indexOf('+') > -1) newDate = newDate.split('+')[0];
       if (newDate.indexOf('Z') > -1) newDate = newDate.split('Z')[0];
 
-      return new Date(Date.parse(newDate) + parseInt(millisecond, 10));
+      return new Date(Date.parse(newDate) + parseInt(millisecond, 10) + 8 * 60 * 60 * 1000);
     }
     return new Date(date);
   }
