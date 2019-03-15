@@ -30,9 +30,12 @@ class Time {
     }
     if (typeof date === 'string') {
       let newDate = date;
-      newDate = date.replace(/-/, '/').replace(/-/, '/').replace(/T/, ' ');
+      if (newDate.indexOf('-') > -1 && newDate.indexOf('-') < 10) { // 把1999-1-1 转换成1999/1/1
+        newDate = date.replace(/-/, '/').replace(/-/, '/'); // 替换两次，防止'1999-1-1 12:00:00-0100'
+      }
+      newDate = newDate.replace(/T/, ' ');
       let millisecond = 0;
-      newDate = newDate.replace(/\.(\d+)/, (str, s) => {
+      newDate = newDate.replace(/\.(\d+)/, (str, s) => { // 获取毫秒 1999-1-1 12:00:00.123
         millisecond = s;
         return '';
       });
