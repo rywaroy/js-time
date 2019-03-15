@@ -30,16 +30,38 @@ class Time {
     }
     if (typeof date === 'string') {
       let newDate = date;
-      newDate = date.replace(/-/g, '/').replace(/T/, ' ');
+      newDate = date.replace(/-/, '/').replace(/-/, '/').replace(/T/, ' ');
       let millisecond = 0;
       newDate = newDate.replace(/\.(\d+)/, (str, s) => {
         millisecond = s;
         return '';
       });
-      if (newDate.indexOf('+') > -1) newDate = newDate.split('+')[0];
+      let deviation = 0; // 偏移时间（分钟）
+      const timeZone = new Date().getTimezoneOffset(); // 时区（分钟）
+      if (newDate.indexOf('+') > -1 || newDate.indexOf('-') > -1) { // 2019-1-1 12:00:08+0800  -0800 情况
+        let ZZZ = '';
+        let hour = 0;
+        let min = 0;
+        let positive = true;
+        if (newDate.indexOf('-') > -1) {
+          positive = false;
+        }
+        ZZZ = newDate.split(positive ? '+' : '-')[1];
+        newDate = newDate.split(positive ? '+' : '-')[0];
+        if (ZZZ.indexOf(':') > -1) { // 2019-1-1 12:00:08+08:00 情况
+          hour = ZZZ.split(':')[0];
+          min = ZZZ.split(':')[1];
+        } else {
+          hour = ZZZ.slice(0, 2);
+          min = ZZZ.slice(2, 4);
+        }
+        deviation = hour * 60 + Number(min);
+        if (positive) {
+          deviation = -deviation;
+        }
+      }
       if (newDate.indexOf('Z') > -1) newDate = newDate.split('Z')[0];
-
-      return new Date(Date.parse(newDate) + parseInt(millisecond, 10) + 8 * 60 * 60 * 1000);
+      return new Date(Date.parse(newDate) + parseInt(millisecond, 10) + (deviation - timeZone) * 60 * 1000);
     }
     return new Date(date);
   }
