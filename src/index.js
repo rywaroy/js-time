@@ -62,9 +62,13 @@ class Time {
         if (positive) {
           deviation = -deviation;
         }
+        deviation = (deviation - timeZone) * 60 * 1000;
       }
-      if (newDate.indexOf('Z') > -1) newDate = newDate.split('Z')[0];
-      return new Date(Date.parse(newDate) + parseInt(millisecond, 10) + (deviation - timeZone) * 60 * 1000);
+      if (newDate.indexOf('Z') > -1) {
+        newDate = newDate.split('Z')[0];
+        deviation = (deviation - timeZone) * 60 * 1000;
+      }
+      return new Date(Date.parse(newDate) + parseInt(millisecond, 10) + deviation);
     }
     return new Date(date);
   }

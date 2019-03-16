@@ -117,10 +117,15 @@ describe('time', function () {
 		expect(time().format('YYYY-MM-DD HH:mm:ss:SSS')).to.be.equal(moment().format('YYYY-MM-DD HH:mm:ss:SSS'));
 		expect(time('2018-1-1 0:0').format('hh')).to.be.equal('12');
 		expect(time('2018-1-1 18:0').format('hh')).to.be.equal('06');
+		expect(time('2018-1-1 8:0').format('hh')).to.be.equal('08');
 		expect(time('2018-1-1 18:0').format('a')).to.be.equal('pm');
 		expect(time('2018-1-1 18:0').format('A')).to.be.equal('PM');
 		expect(time('2018-1-1 6:0').format('a')).to.be.equal('am');
 		expect(time('2018-1-1 6:0').format('A')).to.be.equal('AM');
+		expect(time('2018-1-1 0:0:0+0800').format('YYYY-MM-DD HH:mm:ss')).to.be.equal(moment('2018-1-1 0:0:0+0800').format('YYYY-MM-DD HH:mm:ss'));
+		expect(time('2018-1-1 0:0:0-0800').format('YYYY-MM-DD HH:mm:ss')).to.be.equal(moment('2018-1-1 0:0:0-0800').format('YYYY-MM-DD HH:mm:ss'));
+		expect(time('2018-1-1 0:0:0+08:00').format('YYYY-MM-DD HH:mm:ss')).to.be.equal(moment('2018-1-1 0:0:0+08:00').format('YYYY-MM-DD HH:mm:ss'));
+		expect(time('2018-1-1 0:0:0Z').format('YYYY-MM-DD HH:mm:ss')).to.be.equal(moment('2018-1-1 0:0:0Z').format('YYYY-MM-DD HH:mm:ss'));
 	});
 
 	it('测试 toObject', function () {
